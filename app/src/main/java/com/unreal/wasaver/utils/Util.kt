@@ -5,7 +5,11 @@ import android.content.Context
 import android.net.Uri
 import android.os.Environment
 import android.webkit.MimeTypeMap
+import android.widget.Toast
 import java.io.File
+import java.io.FileOutputStream
+import java.io.InputStream
+import java.io.OutputStream
 
 class Util {
     companion object{
@@ -47,6 +51,35 @@ class Util {
 
             return mimeType != null && mimeType.startsWith("video")
         }
+
+        fun savefile(sourceuri: String, context: Context) {
+            val inpstrm: InputStream? = context.contentResolver.openInputStream(
+                Uri.fromFile(File(sourceuri))
+            )
+            val fileName = Uri.parse(sourceuri).path
+            var f: File? = null
+            val extention = sourceuri.substring(sourceuri.lastIndexOf("."))
+            f = File(
+                Environment.getExternalStorageDirectory().absolutePath +
+                        "/Download/Status/" +
+                        System.currentTimeMillis() +
+                        extention
+            )
+            f!!.setWritable(true, false)
+            val outputStream: OutputStream = FileOutputStream(f)
+            val buffer = ByteArray(1024)
+            var length = 0
+            if (inpstrm != null) {
+                while (inpstrm.read(buffer).also { length = it } > 0) {
+                    outputStream.write(buffer, 0, length)
+                }
+            }
+            inpstrm!!.close()
+            outputStream.close()
+            Toast.makeText(context, "Download completed", Toast.LENGTH_SHORT).show()
+            inpstrm!!.close()
+        }
+
     }
     
 

@@ -41,7 +41,7 @@ class DownloadsFolder : AppCompatActivity() {
     }
 
     fun getImagePath() {
-        val statusDirectory = File(Environment.getExternalStorageDirectory().absolutePath + "/Download/ig_download/")
+        val statusDirectory = File(Environment.getExternalStorageDirectory().absolutePath + "/Download/Status/")
         if (statusDirectory.exists() && statusDirectory.isDirectory) {
             val files = statusDirectory.listFiles { file ->
                 file.isFile && file.name.endsWith(".jpg")

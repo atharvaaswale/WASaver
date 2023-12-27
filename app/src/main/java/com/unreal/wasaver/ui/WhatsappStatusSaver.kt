@@ -28,7 +28,7 @@ class WhatsappStatusSaver : AppCompatActivity() {
             binding.emptyListLayout.visibility = View.VISIBLE
         } else {
             binding.emptyListLayout.visibility = View.GONE
-            binding.rv.adapter = StatusAdapter(statusList, this)
+            binding.rv.adapter = StatusAdapter(statusList, this, this)
             binding.rv.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             binding.rv.setHasFixedSize(true)
         }

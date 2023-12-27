@@ -6,4 +6,5 @@
     <color name="primary">#00bd39</color>
     <color name="blue">#007cd1</color>
     <color name="red">#dc3124</color>
+    <color name="faded_white">#8DFFFFFF</color>
 </resources>
